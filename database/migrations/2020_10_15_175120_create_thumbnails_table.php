@@ -23,7 +23,7 @@ class CreateThumbnailsTable extends Migration
             $table->timestamps();
         });
 
-        DB::statement("ALTER TABLE thumbnails ADD file MEDIUMBLOB");
+        DB::statement("ALTER TABLE thumbnails ADD file bytea");
     }
 
     /**

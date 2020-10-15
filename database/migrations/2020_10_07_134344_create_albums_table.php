@@ -22,7 +22,7 @@ class CreateAlbumsTable extends Migration
             $table->integer('post_id');
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE albums ADD file MEDIUMBLOB");
+        DB::statement("ALTER TABLE albums ADD file bytea");
     }
 
 

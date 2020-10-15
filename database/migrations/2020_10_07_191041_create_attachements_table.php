@@ -22,7 +22,7 @@ class CreateAttachementsTable extends Migration
             $table->integer('post_id');
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE attachements ADD file MEDIUMBLOB");
+        DB::statement("ALTER TABLE attachements ADD file bytea");
     }
 
     /**
