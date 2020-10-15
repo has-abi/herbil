@@ -1,0 +1,17 @@
+.btn-custom{
+	height: 54px;
+    /* padding: 10px; */
+    background-color:#d95821;
+    transition: 0.3s;
+    color: white;
+}
+.btn-custom:hover{
+
+    border:2px solid #d95821;
+  color: white;
+    border-radius: 92% 8% 91% 9% / 0% 100% 0% 100%  ;
+
+}
+input , textarea,option{
+	text-align: right;
+}
