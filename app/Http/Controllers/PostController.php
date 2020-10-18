@@ -37,6 +37,7 @@ class PostController extends Controller
             ->join('categories','categories.id','=','categorie_post.categorie_id')
             ->where('categories.libelle','=',$cat)
             ->where('posts.status','=',true)
+            ->orderBy('posts.id','desc')
             ->select('posts.*')
             ->distinct('posts.id')->paginate(9,['posts.*']);
         if(!Session::exists('search_cat')){
@@ -67,7 +68,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::orderBy('created_at','ASC')->where(['status'=>true])->paginate(8);
+        $posts = Post::orderBy('id','desc')->where(['status'=>true])->paginate(8);
         $innerPost =Post::orderBy('id','desc')->where(['status'=>true])->first();
         $videos = DB::table('videos')->orderBy('created_at','ASC')->limit(5)->get('*');
         $count = $posts->count();
@@ -80,7 +81,7 @@ class PostController extends Controller
     }
 
     public function getAll(){
-        $posts = Post::orderBy('created_at','ASC')->paginate(8);
+        $posts = Post::orderBy('id','desc')->paginate(8);
         return view('posts.index')->with(compact('posts'));
     }
 
