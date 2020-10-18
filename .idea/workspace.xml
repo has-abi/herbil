@@ -23,18 +23,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7299dcf8-822d-4948-8111-80f7aa8e4f8c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tamansourt_Ville_v1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tamansourt_Ville_v1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/ReplyMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/ReplyMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_04_194606_create_posts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_04_194606_create_posts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_07_134344_create_albums_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_07_134344_create_albums_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/mail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/notify.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/notify.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_07_000218_create_contacts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_07_000218_create_contacts_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_07_191041_create_attachements_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_07_191041_create_attachements_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/categorie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categorie.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/mckenziearts/laravel-notify/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/mckenziearts/laravel-notify/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/vendor/mckenziearts/laravel-notify/css/notify.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/vendor/mckenziearts/laravel-notify/css/notify.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/contact_respond.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/contact_respond.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/contact_tables.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/contact_tables.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/posts_table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/posts_table.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/404.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/errors/404.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mail/reply_mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mail/reply_mail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/posts/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/posts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/posts/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/posts/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/search.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/search.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/specialite.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/specialite.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -163,6 +175,7 @@
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/vendor/mckenziearts/laravel-notify" />
       <path value="$PROJECT_DIR$/vendor/jorenvanhocht/laravel-share" />
+      <path value="$PROJECT_DIR$/vendor/anhskohbo/no-captcha" />
     </include_path>
   </component>
   <component name="ProjectId" id="1iQPG6pQqdH8DWbeWO2ZBa2ZkjY" />
@@ -219,6 +232,10 @@
       <workItem from="1602610331111" duration="19273000" />
       <workItem from="1602675338417" duration="32311000" />
       <workItem from="1602783667872" duration="11822000" />
+      <workItem from="1602929820638" duration="27937000" />
+      <workItem from="1602969244748" duration="7385000" />
+      <workItem from="1603029280508" duration="5236000" />
+      <workItem from="1603042253656" duration="15681000" />
     </task>
     <servers />
   </component>
@@ -251,15 +268,15 @@
       <screen x="0" y="28" width="1366" height="740" />
     </state>
     <state width="602" height="446" key="SwitcherDM/0.28.1366.740@0.28.1366.740" timestamp="1602162850601" />
-    <state x="347" y="174" key="run.anything.popup" timestamp="1602598694157">
+    <state x="347" y="174" key="run.anything.popup" timestamp="1602977488031">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="347" y="174" key="run.anything.popup/0.27.1366.741@0.27.1366.741" timestamp="1602598694157" />
+    <state x="347" y="174" key="run.anything.popup/0.27.1366.741@0.27.1366.741" timestamp="1602977488031" />
     <state x="347" y="175" key="run.anything.popup/0.28.1366.740@0.28.1366.740" timestamp="1602167407279" />
-    <state x="346" y="88" width="672" height="679" key="search.everywhere.popup" timestamp="1602791868592">
+    <state x="346" y="88" width="672" height="679" key="search.everywhere.popup" timestamp="1603051334339">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="346" y="88" width="672" height="679" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1602791868592" />
+    <state x="346" y="88" width="672" height="679" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1603051334339" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.28.1366.740@0.28.1366.740" timestamp="1602098206221" />
   </component>
   <component name="XDebuggerManager">
@@ -267,7 +284,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admin/posts_table.blade.php</url>
-          <line>62</line>
+          <line>61</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

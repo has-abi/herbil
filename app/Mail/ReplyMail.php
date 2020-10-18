@@ -11,15 +11,22 @@ class ReplyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $content;
+    public $content;
+    public $subject;
+    public $att;
+    public $filename;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($content)
+    public function __construct($content,$subject,$att,$filename)
     {
         $this->content = $content;
+        $this->subject = $subject;
+        $this->att = $att;
+        $this->filename = $filename;
+
     }
 
     /**
@@ -29,6 +36,11 @@ class ReplyMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.reply_mail')->with("content",$this->content);
+        return $this->subject("Commun Harbil Tamansourt")->view('mail.reply_mail')->with([
+            "content"=>$this->content,
+            "subject"=>$this->subject,
+            "att"=>$this->att,
+            "filename"=>$this->filename
+        ]);
     }
 }

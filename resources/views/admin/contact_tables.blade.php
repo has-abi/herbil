@@ -6,8 +6,8 @@
             <thead class="bg-light ">
                 <tr class="text-right">
                     <td>التحكم</td>
+                    <td>الإجابة</td>
                     <td>التاريخ</td>
-                    <td>الرسالة</td>
                     <td>الموضوع</td>
                     <td>البريد الإلكتروني</td>
                     <td>الهاتف</td>
@@ -24,11 +24,20 @@
                                 {{ method_field('DELETE') }}
                                 <button class="btn-sm border-0 btn-danger shadow-sm text-center"> حذف <span class="fa fa-trash"></span></button>
                             </form>
+                            @if(!$c->respond)
                             <a href="{{ url("contact/respond/".$c->id) }}" class="btn-sm border-0 btn-primary shadow-sm text-center"> أجب <span class="fa fa-send"></span></a>
+                            @endif
                         </div>
                     </td>
+
+                    <td>
+                        @if($c->respond)
+                            <span class="badge badge-success">تمت الإجابة </span>
+                        @else
+                            <span class="badge badge-warning">لم تتم الإجابة بعد</span>
+                        @endif
+                    </td>
                     <td>{{date('m-d-Y', strtotime($c->created_at))}}</td>
-                    <td>{{ $c->content }}</td>
                     <td>{{ $c->subject }}</td>
                     <td>{{ $c->email }}</td>
                     <td>{{ $c->phone }}</td>
@@ -37,6 +46,10 @@
             @endforeach
             </tbody>
         </table>
+        <div class="card-footer d-flex justify-content-center bg-white">
+            {{ $contacts->render('vendor.pagination.bootstrap-4') }}
+        </div>
+        <a href="{{ url('responses') }}" class="btn btn-info">الأجوبة</a>
     </div>
 @endsection
 

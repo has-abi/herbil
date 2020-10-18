@@ -6,6 +6,7 @@ use App\Helpers\StringHelper;
 use App\Models\Album;
 use App\Models\Attachement;
 use App\Models\Categorie;
+use App\Models\CategoriePost;
 use App\Models\Post;
 use App\Models\Thumbnail;
 use Illuminate\Http\Request;
@@ -20,21 +21,14 @@ use Illuminate\Support\Str;
 class PostController extends Controller
 {
     public function  getThumbnail($id){
-        $thumbnail = DB::table('thumbnails')->where('post_id','=',$id)->get('*');
-        $data = $thumbnail[0]->file;
-        return \Illuminate\Support\Facades\Response::make($data, 200, array('Content-type' => 'image/'.$thumbnail[0]->extension, 'Content-length' => $thumbnail[0]->size));
+        $this->getFile($id,"thumbnails");
     }
     public function getAlbumImage($id){
-        $image = DB::table('albums')->find($id);
-        $data = $image->file;
-        return \Illuminate\Support\Facades\Response::make($data, 200, array('Content-type' => 'image/'.$image->extension, 'Content-length' => $image->size));
+        $this->getFile($id,"albums",$id);
     }
 
     public function getAttachement($id){
-        $attachement = DB::table('attachements')->find($id);
-        $data = $attachement->file;
-        return \Illuminate\Support\Facades\Response::make($data, 200, array('Content-type' => 'image/'.$attachement->extension, 'Content-length' => $attachement->size));
-
+        $this->getFile($id,"albums",$id);
     }
     public function byCategorie(Request $request){
         $cat = $request->get('c');
@@ -42,6 +36,7 @@ class PostController extends Controller
             ->join('categorie_post','categorie_post.post_id','=','posts.id')
             ->join('categories','categories.id','=','categorie_post.categorie_id')
             ->where('categories.libelle','=',$cat)
+            ->where('posts.status','=',true)
             ->select('posts.*')
             ->distinct('posts.id')->paginate(9,['posts.*']);
         if(!Session::exists('search_cat')){
@@ -58,6 +53,7 @@ class PostController extends Controller
                         ->join('categorie_post','categorie_post.post_id','=','posts.id')
                         ->join('categories','categories.id','=','categorie_post.categorie_id')
                         ->where('posts.title','like','%'.$s.'%')
+                         ->where('posts.status','=',true)
                         ->orWhere('categories.libelle','=',$s)
                         ->select('posts.*')
                        ->distinct('posts.id')->paginate(9,['posts.*']);
@@ -71,8 +67,8 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::orderBy('created_at','ASC')->paginate(8);
-        $innerPost =Post::orderBy('id','desc')->first();
+        $posts = Post::orderBy('created_at','ASC')->where(['status'=>true])->paginate(8);
+        $innerPost =Post::orderBy('id','desc')->where(['status'=>true])->first();
         $videos = DB::table('videos')->orderBy('created_at','ASC')->limit(5)->get('*');
         $count = $posts->count();
         return view("welcome")->with([
@@ -91,6 +87,8 @@ class PostController extends Controller
     public function create()
     {
         if(Auth::check()){
+            notify()->success("success");
+
             $categories = Categorie::all();
             return view("posts.create")->with('categories',$categories);
         }
@@ -114,30 +112,19 @@ class PostController extends Controller
         $post->status = true;
         $post->save();
         if($request->hasFile('thumbnail')){
-            $thumbnail = new Thumbnail;
             $file = $request->file('thumbnail');
-            $thumbnail = $this->createFile($thumbnail,$file);
-            $thumbnail->post_id = $post->id;
-            $thumbnail->save();
+            $this->insertFile($post->id,$file,"thumbnails");
         }
-       //$categories = DB::table('categories')->find();
-
            $post->categories()->attach($request->get('categorie'));
 
         if($request->hasFile("attachement")){
             foreach ($request->file('attachement') as $file){
-                $attachement = new Attachement;
-                $attachement = $this->createFile($attachement,$file);
-                $attachement->post_id = $post->id;
-                $attachement->save();
+                $this->insertFile($post->id,$file,"attachements");
             }
         }
         if($request->hasFile('images')){
             foreach ($request->file('images') as $file){
-                $image = new Album;
-                $image = $this->createFile($image,$file);
-                $image->post_id = $post->id;
-                $image->save();
+                $this->insertFile($post->id,$file,"albums");
             }
         }
             notify()->success("تم نشر المقال بنجاح");
@@ -192,38 +179,52 @@ class PostController extends Controller
         if(Auth::check()){
             $categories = Categorie::all();
             $post = Post::find($id);
-            return view("posts.edit")->with(["post"=>$post,"categories"=>$categories]);
+            $thumb = DB::table('thumbnails')->where(['post_id'=>$id])->get("*");
+            return view("posts.edit")->with(["post"=>$post,"categories"=>$categories,"thumb"=>$thumb[0]]);
         }
         return view("auth.login")->with("error","ليست لديك صلاحية الدخول!  المرجوا إدخال معلومات حسابك.");
 
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'title'=>'required',
-            'content'=>'required'
-
+            'content'=>'required',
         ]);
-        $post = DB::table('posts')->find($id);
+        $id = $request->get('post_id');
+        $post = Post::with('categories')->find($id);
         $title = $request->get("title");
-
         $content = $request->get("content");
-        $attachement = $post->attachement;
-        if($request->hasFile("attachement")){
-            $originName = $request->file('attachement')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('attachement')->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
-            $request->file('attachement')->move(public_path('files/attachement'), $fileName);
-            $attachement = $fileName;
+        if($request->hasFile("thumbnail")){
+            DB::table('thumbnails')->where(['post_id'=>$post->id])->delete();
+            $this->insertFile($post->id,$request->file('thumbnail'),"thumbnails");
         }
+
+            foreach($post->categories as $pc){
+                if(!in_array($pc->id,$request->get('categorie'))){
+                    DB::table('categorie_post')->where(['categorie_id'=>$pc->id])->delete();
+                }
+            }
+
+            foreach ($request->get('categorie') as $c){
+                if(!in_array($c,\App\Helpers\DataHelper::catsToArray($post->categories))){
+                    $pdo = DB::connection()->getPdo();
+                    $sql = "INSERT INTO categorie_post (post_id,categorie_id) VALUES (:post_id,:categorie_id)";
+                    $stm = $pdo->prepare($sql);
+                    $stm->execute([
+                        ':post_id'=>$post->id,
+                        ':categorie_id'=>$c
+                    ]);
+                }
+            }
+
+
         DB::table('posts')->where(["id"=>$id])->update(
             [
                 'title'=>$title,
                 'content'=>$content,
-                'attachement'=>$attachement,
             ]
         );
         notify()->success("تم تعديل المقال بنجاح");
@@ -237,21 +238,21 @@ class PostController extends Controller
         if(Auth::check()){
             $post = DB::table('posts')->find($id);
             if(isset($post)){
-                $albumImages = DB::table('albums')->where(['post_id'=>$id])->get('*');
-                $attachements = DB::table('attachements')->where(['post_id'=>$id])->get('*');
+                $albumImages = DB::table('albums')->where(['post_id'=>$id])->get('id');
+                $attachements = DB::table('attachements')->where(['post_id'=>$id])->get('id');
                 if ($albumImages->count()>0){
                     foreach ($albumImages as $image){
-                        File::delete('files/album/'.$image->url);
                         DB::table('albums')->delete($image->id);
                     }
                 }
                 if($attachements->count()>0){
                     foreach ($attachements as  $attachement){
-                        File::delete('files/attachement/'.$attachement->url);
                         DB::table('attachements')->delete($attachement->id);
                     }
                 }
-                File::delete('files/thumbnail/'.$post->thumbnail);
+               $thum = DB::table('thumbnails')->where(['post_id'=>$id])->get('id');
+                DB::table('thumbnails')->delete($thum[0]->id);
+
                 DB::table('posts')->delete($id);
 
             notify()->success("تم حذف المقال بنجاح");
@@ -272,13 +273,71 @@ class PostController extends Controller
         return $fileName;
     }
 
-    public function createFile($object,$file){
-        $fileName = $this->createFileName($file);
-        $object->size = $file->getSize();
-        $object->extension = $file->getClientOriginalExtension();
-        $object->name = $fileName;
-        $object->file = $file->openFile()->fread($file->getSize());
-        return $object;
 
+
+    public function insertFile($post_id,$file,$table){
+
+        $sql = "INSERT INTO ".$table."(size,extension,name,post_id,file) "
+            . "VALUES(:size,:extension,:name,:post_id,:file)";
+        $pdo = DB::connection()->getPdo();
+        try {
+            $pdo->beginTransaction();
+            $pathToFile = $file->getRealPath();
+            // create large object
+            $fileData = $pdo->pgsqlLOBCreate();
+            $stream = $pdo->pgsqlLOBOpen($fileData, 'w');
+
+            // read data from the file and copy the the stream
+            $fh = fopen($pathToFile, 'rb');
+            stream_copy_to_stream($fh, $stream);
+            //
+            $fh = null;
+            $stream = null;
+
+            $stmt = $pdo->prepare($sql);
+
+            $stmt->execute([
+                ':size' => $file->getSize(),
+                ':extension' => $file->getClientOriginalExtension(),
+                ':name' =>  $this->createFileName($file),
+                ':post_id' => $post_id,
+                ':file'=>$fileData
+            ]);
+
+            // commit the transactions
+            $pdo->commit();
+        } catch (\Exception $e) {
+            $pdo->rollBack();
+            throw $e;
+        }
+
+    }
+
+    public function getFile($id,$table,$altId = 0){
+        $pdo = DB::connection()->getPdo();
+        $pdo->beginTransaction();
+        if($altId == 0){
+            $stmt = $pdo->prepare("SELECT id, file, extension "
+                . "FROM ".$table
+                . " WHERE post_id = :id");
+        }else{
+            $stmt = $pdo->prepare("SELECT id, file, extension "
+                . "FROM ".$table
+                . " WHERE id = :id");
+        }
+
+
+        // query blob from the database
+        $stmt->execute([$id]);
+        $fileData = "";
+        $ext = "";
+        $stmt->bindColumn('file', $fileData, $pdo::PARAM_STR);
+        $stmt->bindColumn('extension', $ext, $pdo::PARAM_STR);
+        $stmt->fetch(\PDO::FETCH_BOUND);
+        $stream = $pdo->pgsqlLOBOpen($fileData, 'r');
+
+        // output the file
+        header("Content-type: image/" . $ext);
+        fpassthru($stream);
     }
 }

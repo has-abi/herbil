@@ -10,8 +10,8 @@
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap"
         rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/404.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/404.css') }}">
     <title>404</title>
     <style>
         body {

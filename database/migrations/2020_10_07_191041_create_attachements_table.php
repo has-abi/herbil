@@ -19,7 +19,9 @@ class CreateAttachementsTable extends Migration
             $table->integer('size');
             $table->string('extension');
             $table->string('name');
-            $table->integer('post_id');
+            $table->string('mime');
+            $table->integer('post_id')->nullable();
+            $table->integer('respond_id')->nullable();
             $table->timestamps();
         });
         DB::statement("ALTER TABLE attachements ADD file bytea");

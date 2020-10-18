@@ -143,7 +143,7 @@ a:hover {
 }
 .container_text{
     height: 60px;
-    width: 300px;
+    min-width: 300px;
     position: absolute;
     opacity: 0.8;
 }
@@ -368,6 +368,7 @@ transform: scale(1.2);
         font-size: 16px;
     }
 
+
 }
 img.zoom {
     width: 100%;
@@ -473,6 +474,9 @@ img.zoom {
     .back-to-top{
         bottom: 60px;
     }
+    .container_text{
+        width: 100%;
+    }
 }
 @media (max-width: 767px) {
     #mixedSlider .MS-content .item {
@@ -562,6 +566,7 @@ img.zoom {
     background: rgba(0,0,0,0.6);
     width: 100%;
     display: none;
+    z-index: 999999;
     animation-name: card_width;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -586,7 +591,7 @@ img.zoom {
 .post_btn:hover{
     background: transparent;
     color: white;
-    border: 2px solid white;
+    border: 1px solid white;
 
 }
 @keyframes card_width  {

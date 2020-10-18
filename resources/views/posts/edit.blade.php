@@ -3,11 +3,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
     <link rel="stylesheet" href="{{asset("css/admin.css")}}">
 @endsection
+
 @section("admin")
-    @php
-    global  $ids ;
-    $ids = [];
-    @endphp
     @if(session("success"))
         <div class="alert alert-success shadow text-right my-2 mx-5" >{{ session("success") }}</div>
     @endif
@@ -17,8 +14,9 @@
     <h1 class="text-center mt-2">تعديل المقال</h1>
     <div class="mx-xl-5 mx-md-2 mx-sm-1">
 
-        <form action="{{ url('post_update/'.$post->id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('post_update') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" value="{{ $post->id }}" name="post_id">
             <div class="form-group">
                 <label for="title" class="float-right">العنوان</label>
                 <input type="text" value="{{ $post->title }}" class="form-control text-right @error('title') is-invalid @enderror" name="title">
@@ -32,13 +30,11 @@
                         <label for="cat" class="float-right">الفئة</label>
                         <select name="categorie[]" id="cat" class="selectpicker shadow-sm  border text-right w-100"  multiple data-live-search="true" >
                             @foreach($post->categories as $c)
-                                @php
-
-                                @endphp
                                 <option value="{{ $c->id }}" selected>{{ $c->libelle }}</option>
                             @endforeach
                             @foreach($categories as $cat)
                                 @if(!in_array($cat->id,App\Helpers\DataHelper::catsToArray($post->categories)))
+
                                     <option value="{{$cat->id}}" style="direction: rtl">{{$cat->libelle}}</option>
                                 @endif
                             @endforeach
@@ -47,9 +43,9 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="attachement" class="float-right">الملحقات</label>
-                        <input type="file" name="attachement" class="form-control" id="attachement">
-                        <div class="alert alert-light"><a href="{{ url('image/'.$post->id) }}">{{ $post->thumbnail }} <span class="fa fa-file-pdf"></span></a></div>
+                        <label for="thumbnail" class="float-right">الصورة الرئيسية</label>
+                        <input type="file" name="thumbnail" class="form-control" id="thumbnail">
+                        <div class="alert alert-light"><a href="{{ url('image/'.$post->id) }}">{{ $thumb->name}} <span class="fa fa-file-pdf"></span></a></div>
                     </div>
                 </div>
             </div>

@@ -38,7 +38,7 @@ return [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
             'port' => env('MAIL_PORT', 587),
-            'from' => ['address' => 'abidahass.uca@gmail.com', 'name' => 'tamansourt'],
+            'from' => ['address' => 'abidahass.uca@gmail.com', 'name' => 'جماعة حربيل تامنصورت'],
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),

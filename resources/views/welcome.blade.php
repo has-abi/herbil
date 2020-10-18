@@ -55,6 +55,7 @@
                                 </a>
                             </div>
                             @endif
+                            @if(isset($innerPost))
                             <div class="carousel-item active">
                                 <a href="{{ url('post/'.$innerPost->id) }}">
                                 <img
@@ -72,6 +73,7 @@
                                 </div>
                                 </a>
                             </div>
+                                @endif
                                 @foreach($posts as $post)
                                 @if($post->id!=$innerPost->id)
                             <div class="carousel-item">
@@ -310,14 +312,20 @@
                         <div class="MS-content">
                             @foreach($posts as $post)
                                 <div class="item">
-                                    <div class="card post">
+                                    <div class="card post border-0 bg-transparent">
                                         <div class="card_after text-center ">
                                             <a href="{{ url('post/'.$post->id) }}" class=" shadow post_btn">لقراءة المزيد</a>
                                         </div>
-                                        <div class="card-header text-right">
+                                        <img src="{{ url('image/'.$post->id) }}" alt="image" class="card-img" style="height: 200px">
+                                        <div class="card-img-overlay my-1 p-0">
+                                            @foreach($post->categories as $pc)
+                                                <a href="{{ url('categorie?c='.$pc->libelle) }}" class="badge badge-light mx-1" >{{ $pc->libelle }}</a>
+                                            @endforeach
+
+                                        </div>
+                                        <div class="card-text text-right" style="direction: rtl">
                                             <h6>{{ $post->title }}</h6>
                                         </div>
-                                        <img src="{{ url('image/'.$post->id) }}" alt="image" class="card-img" style="height: 200px">
                                     </div>
                                 </div>
                             @endforeach

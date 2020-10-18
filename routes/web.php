@@ -29,12 +29,12 @@ Route::get("posts",[PostController::class,'index'])->name('posts');
 Route::get("posts/create",[PostController::class,'create'])->name("posts.create");
 
 
-
+Route::post('post_statu/{id}',[AdminController::class,'changeStatus']);
 Route::post("post_create",[PostController::class,'store'])->name('post_create');
 Route::post("upload",[PostController::class,'upload'])->name("upload");
 
 Route::get("post/edit/{id}",[PostController::class,'edit'])->name('post_edit');
-Route::post("post_update/{id}",[PostController::class,'update'])->name('post_update');
+Route::post("post_update",[PostController::class,'update'])->name('post_update');
 Route::delete("post_delete/{id}",[PostController::class,'destroy'])->name('post_destroy');
 Route::get("admin/posts_table",[AdminController::class,'posts'])->name('posts');
 Route::get('post/{id}',[PostController::class,'show'])->name('post');
@@ -60,6 +60,9 @@ Route::post("post_update/{id}",[VideoController::class,'update']);
 Route::get('contact',function (){
    return view("contact");
 })->name('contact');
+Route::get('mail',function (){
+    return view('mail.reply_mail');
+});
 Route::post("contact",[ContactController::class,'store']);
 Route::get("contact/all",[ContactController::class,'index']);
 Route::delete("contact_delete/{id}",[ContactController::class,'destroy']);
@@ -86,4 +89,9 @@ Route::get('specialite',function (){
 Route::get('image/{postId}',[PostController::class,'getThumbnail']);
 Route::get('album/image/{id}',[PostController::class,'getAlbumImage']);
 Route::get('attachement/{id}',[PostController::class,'getAttachement']);
+
+Route::get('responses',[ContactController::class,'responses']);
+Route::get('response/{id}',[ContactController::class,'respond']);
+Route::get('att/{id}',[ContactController::class,'getResponseAtt']);
+Route::delete('res_delete/{id}',[ContactController::class,'deleteRes']);
 

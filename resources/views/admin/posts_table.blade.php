@@ -4,6 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 @section('custum_styles')
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 @endsection
 @section("admin")
@@ -20,8 +21,8 @@
                     <thead class="bg-dark text-white">
                     <tr class="text-right">
                         <td>التحكم</td>
-                        <td>الحالة</td>
-                        <td>الملحقات</td>
+                        <td>مرئي</td>
+                        <td>الصورة الرئيسية</td>
                         <td>النوع</td>
                         <td>العنوان</td>
                         <td><input type="checkbox" class="form-control-sm" id="allPosts"></td>
@@ -39,34 +40,31 @@
                             </td>
                             <td>
                                 @if($post->status)
-                                    <span class="badge badge-success">مرئي</span>
+                                    <input id="visible_post" data="{{ $post->id }}" class="statu" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-size="small">
                                 @else
-                                    <span class="badge badge-warning">غير مرئى</span>
+                                    <input id="invisible_post" data="{{ $post->id }}" class="statu" checked type="checkbox"  data-toggle="toggle" data-onstyle="danger" data-offstyle="success" data-size="small">
                                 @endif
                             </td>
-                            <td>
-                                @if(isset($post->attachement))
-                                <a href="{{ url("files/attachement/".$post->attachement) }}"><span class="fa fa-file-pdf"></span> {{ $post->attachement }}</a></td>
-                            @else
-                                    <span class="text-danger">لا يوجد</span>
-                            @endif
+                            <td class="text-center">
+                                <a href="{{ url("image/".$post->id) }}"  id="fancybox" rel="ligthbox">
+                                    <img src="{{ url("image/".$post->id) }}" style="height: 40px;width: 40px;margin: auto;cursor: pointer" >
+                                </a>
                             <td>
                                 @foreach($post->categories as $c)
                                     <span class="badge badge-dark">{{ $c->libelle }}</span>
                                 @endforeach
                             </td>
                             <td>{{ $post->title }}</td>
-                            <td><input type="checkbox" class="form-control-sm postItem" ></td>
+                            <td><input type="checkbox" class="form-control-sm postItem" data="{{ $post->id }}"></td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
                 <x-delete-modal></x-delete-modal>
                 <div id="chooseAction" class="hide w-25">
-                            <select  id="chooseAction" class="form-control text-center" style="direction: rtl">
+                            <select  id="choose" class="form-control text-center" style="direction: rtl">
                                 <option value="default" selected disabled>--إختر--</option>
-                                <option value="disable" class="text-right">حجب</option>
-                                <option value="delete" class="text-right">حذف</option>
+                                <option value="disable" id="disable_post" class="text-right">حجب</option>
                             </select>
                 </div>
                 <div class="alert alert-danger text-right hide" id="delete_error">وقع خطأ !</div>
@@ -118,68 +116,115 @@
 
 @endsection
 @section('custum_scripts')
+
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="{{asset("js/admin.js")}}"></script>
     <script>
+        data = [];
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         var postId;
-        $(document).ready(function (){
 
-            $("#allPosts").click(function (){
+        $(document).ready(function () {
+            $("#allPosts").click(function () {
                 $("#chooseAction").toggleClass('hide');
-                if($(this).is(':checked')){
-                    $(".postItem").each((index)=>{
+                if ($(this).is(':checked')) {
+                    $(".postItem").each((index) => {
+                        data.push($(".postItem")[index].getAttribute('data'));
                         $(".postItem")[index].checked = true;
                     });
-                }else{
-                    $(".postItem").each((index)=>{
+                } else {
+                    $(".postItem").each((index) => {
                         $(".postItem")[index].checked = false;
+                        data.length = 0;
                     });
                 }
             });
 
-            $('.postItem').click(function (){
+
+            $('.postItem').click(function () {
+                data.filter(d=>d == $(this).attr('data')).length>0?data.splice(data.indexOf($(this).attr('data')),1) : data.push($(this).attr('data'));
                 let allUncheck = true;
                 let numberOfChecked = 0;
-                $('.postItem').each((index)=>{
-                    if($(".postItem")[index].checked == true){
+                $('.postItem').each((index) => {
+                    if ($(".postItem")[index].checked == true) {
                         allUncheck = false;
                         numberOfChecked++;
                     }
                 })
-                if(numberOfChecked>1){
+                if (numberOfChecked > 1) {
                     $("#chooseAction").removeClass('hide');
                 }
-                if(allUncheck){
+                if (allUncheck) {
                     $("#chooseAction").addClass('hide');
-                    $("#allPosts").prop('checked',false);
+                    $("#allPosts").prop('checked', false);
                 }
             });
-            $(".deleteBtn").click(function (){
+            $(".deleteBtn").click(function () {
                 postId = $(this).attr('post-id');
                 $("#deleteModalLabel").text($(this).attr('post-title'));
                 $('#deleteModal').modal('show');
             });
-        $('#deleteThePost').click(function (){
+            $('#deleteThePost').click(function () {
 
-             $.ajax({
-               url:'{{url('post_delete')}}/'+postId,
-                type:'DELETE',
-               success:function (){
-                   $('#deleteModal').modal('hide');
-                   location.reload();
-               },
-                 error:function (){
-                     $('#deleteModal').modal('hide');
-                     $("#delete_error").removeClass('hide');
-                 }
+                $.ajax({
+                    url: '{{url('post_delete')}}/' + postId,
+                    type: 'DELETE',
+                    success: function () {
+                        $('#deleteModal').modal('hide');
+                        location.reload();
+                    },
+                    error: function () {
+                        $('#deleteModal').modal('hide');
+                        $("#delete_error").removeClass('hide');
+                    }
+                });
+            })
+
+
+            $(".statu").change(function (){
+                $.ajax({
+                    url:'{{url('post_statu')}}/'+$(this).attr('data'),
+                    type:'POST',
+                    success:function (){
+                        location.reload();
+                    },
+                    error:function (){
+                        $('#deleteModal').modal('hide');
+                        $("#delete_error").removeClass('hide');
+                    }
+                })
             });
         });
-        })
+        $('#visible_post').bootstrapToggle({
+            on: 'نعمs',
+            off: 'لا'
+        });
+        $('#invisible_post').bootstrapToggle({
+            on: 'لا',
+            off: ' نعم'
+        });
 
+        $("#disable_post").click(function (){
+            for(let i = 0;i<data.length;i++){
+                $.ajax({
+                    url:'{{url('post_statu')}}/'+data[i],
+                    type:'POST',
+                    success:function (){
+                        if((i+1) == data.length){
+                            location.reload();
+                        }
+                    },
+                    error:function (){
+                        $('#deleteModal').modal('hide');
+                        $("#delete_error").removeClass('hide');
+                    }
+                })
+            }
+        });
 
     </script>
 @endsection

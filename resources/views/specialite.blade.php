@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 @section('custum_scripts')
-    <link rel="stylesheet" href="{{ secure_asset("css/style.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/style.css") }}">
 @endsection
 @section('template')
 <x-navbar></x-navbar>
