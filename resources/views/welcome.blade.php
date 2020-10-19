@@ -150,7 +150,7 @@
             <br />
 
             <div class="row">
-                <div class="col-md-4 order-sm-1 order-1  order-xl-0">
+                <div class="col-lg-4 order-sm-1 order-xs-1 order-1  order-md-1 order-lg-0  order-xl-0">
                     <div class="row" style="text-align: center">
                         <div class="col-md-9"></div>
                         <div class="col-md-3"><h3> بـرامـج</h3></div>
@@ -172,18 +172,6 @@
                     </div>
                     <br />
                     <hr />
-
-                    <br />
-                    <div class="my-card test2 d-flex justify-center">
-                        <div class="container_text tamnsourt-color"></div>
-                        <p class="ho">
-                            نافذة خاصة بسوق الجملة الجديد لبيع الخضر والفواكه لمدينة طنجة
-                        </p>
-                    </div>
-                    <br />
-                    <hr />
-
-                    <br />
                     <div class="row" style="text-align: center">
                         <div class="col-md-7"></div>
                         <div class="col-md-5"><h3>فـيـديـوهـات</h3></div>
@@ -204,9 +192,6 @@
                         @endforeach
 
                     </div>
-
-                    <br />
-                    <hr />
                     <br />
                     <div class="row" style="text-align: center">
                         <div class="col-md-3"></div>
@@ -252,7 +237,7 @@
                     </div>
                     <!-- A Gallery of photos sliding to show to city beauty , i will do it later -->
                 </div>
-                <div class="col-md-8 order-sm-0 order-0 order-xl-1">
+                <div class="col-lg-8 order-xs-0 order-sm-0 order-0 order-md-0 order-lg-1 order-xl-1">
 
                     <div class="row" style="text-align: center">
                         <div class="col-md-10"></div>
@@ -262,12 +247,12 @@
                     @if($posts->count()>0)
                     @foreach($posts as $post)
                     <div class="row" style="text-align: right">
-                        <div class="col-md-11">
+                        <div class="col-md-11 order-0">
                             <h3 style="direction: rtl">
                                 <a href="{{ url('post/'.$post->id) }}">{{ $post->title }}</a>
                             </h3>
                         </div>
-                        <div class="col-md-1 my-2 text-center" style="border-left: 2px solid #292929">
+                        <div class="col-md-1 my-2 order-1 text-center" style="border-left: 2px solid #292929">
                             {{ App\Helpers\DateHelper::monthToArabic(date('m', strtotime($post->created_at))) }}
                             <div style="font-size: 30px;font-weight: bold;margin-top: -10px;margin-bottom: -10px">
                                 {{ date('d', strtotime($post->created_at)) }}
@@ -276,7 +261,7 @@
                         </div>
                         <br />
                         <br />
-                        <div class="col-md-8">
+                        <div class="col-md-8 order-xl-3 order-md-3 order-4">
                             <p>
                                 {!! \Illuminate\Support\Str::limit($post->content,300) !!}...
                                 <a
@@ -288,7 +273,7 @@
                                 </a>
                             </p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 order-xl-4 order-md-4 order-3">
                             <img src="{{ url('image/'.$post->id) }}" width="100%" alt="image" />
                             <br />
                             @foreach($post->categories as $pc)

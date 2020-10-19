@@ -27,7 +27,7 @@
                 ></a>
                 -->
           </span>
-        <a href="{{ route('/') }}" class="navbar-brand d-sm-inline-block d-md-none text-right ">الرئيسية</a>
+        <a href="{{ route('/') }}" class="navbar-brand d-md-inline-block d-lg-none  text-right ">الرئيسية</a>
         <div class="collapse navbar-collapse text-center" id="navbarTogglerDemo02">
             <ul
                 class="navbar-nav  ml-auto mt-2 mt-lg-0 mx-5"
@@ -207,15 +207,15 @@
 <div class="search-container d-none">
     <span id="search-close" class="cursor">x</span>
     <form action="{{ url('chercher') }}" method="GET">
-    <div class="row search-content no-gutters">
+    <div class="row search-content no-gutters mx-1">
 
         <div class="col-1">
             <button type="submit" class="bg-transparent border-0"><span class="fa fa-search text-white float-right cursor" style="font-size: 30px"></span></button>
         </div>
         <div class="col-9">
-                <input type="text"  name="m" id="search">
+                <input type="text"  name="m" id="search" >
         </div>
-        <div class="col-2 text-white text-left" style="font-size: 30px">
+        <div class="col-2  text-white text-left" style="font-size: 26px">
             البحث
         </div>
 

@@ -2,6 +2,9 @@
 @section("custum_styles")
     <link rel="stylesheet" href="{{ asset("css/style.css") }}">
 @endsection
+@section('title')
+    {{ session()->get('search_cat') }}
+@endsection
 @section('template')
     <h3 class="text-center">{{ session()->get('search_cat') }}</h3>
 

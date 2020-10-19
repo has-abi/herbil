@@ -2,6 +2,9 @@
 @section("custum_styles")
     <link rel="stylesheet" href="{{ asset("css/style.css") }}">
 @endsection
+@section('title')
+    {{ session()->get('search_word') }}
+@endsection
 @section('template')
 
     <x-navbar></x-navbar>

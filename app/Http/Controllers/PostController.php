@@ -88,8 +88,6 @@ class PostController extends Controller
     public function create()
     {
         if(Auth::check()){
-            notify()->success("success");
-
             $categories = Categorie::all();
             return view("posts.create")->with('categories',$categories);
         }

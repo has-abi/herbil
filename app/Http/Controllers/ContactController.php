@@ -169,6 +169,6 @@ class ContactController extends Controller
 
     public function deleteRes($id){
             DB::table('responds')->delete($id);
-            return redirect('responces');
+            return redirect('responses');
     }
 }

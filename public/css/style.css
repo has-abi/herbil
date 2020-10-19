@@ -146,12 +146,16 @@ a:hover {
     min-width: 300px;
     position: absolute;
     opacity: 0.8;
+
 }
 .ho{
     color: white;
     /* font-weight: bold; */
     font-size: larger;
     position: absolute;
+    margin-top: -6px;
+    top: 50%;
+    transform: translate(0%,-50%);
 }
 .carding{
   background-image: url(../images/bla.jpg);
@@ -162,6 +166,9 @@ a:hover {
   background-color: whitesmoke;
   padding: 40px;
   text-align: center;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
     position: relative;
     color: #f83600;
 }
@@ -170,18 +177,21 @@ a:hover {
   background-image: url(../images/princ.jpg) ;
   background-position: center;
     background-size: cover;
+    overflow: hidden;
 }
 .test{
   background-image: url(../images/clean.jpg) ;
     background-position: center;
     background-size: cover;
     height: 150px;
+    overflow: hidden;
 }
 .test2{
   background-image: url(../images/souk.jpg) ;
     background-position: center;
     background-size: cover;
     height: 150px;
+    overflow: hidden;
 }
 .navbar-brand::after {
     content: "";
@@ -332,8 +342,9 @@ transform: scale(1.2);
 }
 @media screen and (max-width:720px){
     #search{
-        font-size: 24px;
-        margin-left:10px;
+        font-size: 18px;
+        padding-right:15px;
+        margin-left: 10px;
     }
     .search-content{
         margin-top: 200px;
