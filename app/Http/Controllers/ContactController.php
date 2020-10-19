@@ -42,6 +42,7 @@ class ContactController extends Controller
         $contact->phone = $request->get("phone");
         $contact->content = $request->get("content");
         $contact->subject = $request->get("subject");
+        $contact->respond = false;
         if($contact->save()){
             $request->session()->flash("success","تم تسجيل رسالتك بنجاح");
         }

@@ -185,11 +185,6 @@
                 <tr>
                     <td class="innerpadding borderbottom">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td class="h4">
-                                    الجواب:
-                                </td>
-                            </tr>
 
                             <tr>
                                 <td class="bodycopy">
