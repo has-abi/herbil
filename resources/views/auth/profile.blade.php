@@ -21,7 +21,7 @@
                     <div class="alert alert-danger my-2">{{ $message }}</div>
                     @enderror
                 </div>
-                <button class="btn btn-success shadow btn-block" id="validate" type="submit" disabled>تعديل</button>
+                <button class="btn btn-success shadow btn-block" id="validate" type="submit">تعديل</button>
             </form>
         </div>
 @endsection
