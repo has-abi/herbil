@@ -27,7 +27,7 @@
                 ></a>
                 -->
           </span>
-        <a href="{{ route('/') }}" class="navbar-brand d-md-inline-block d-lg-none   text-right @if( url()->current() == route('/') ) active @endif">الرئيسية </a>
+        <a href="{{ route('/') }}" class="navbar-brand d-md-inline-block d-lg-none text-dark   text-right @if( url()->current() == route('/') ) active @endif">الرئيسية </a>
         <div class="collapse navbar-collapse text-center" id="navbarTogglerDemo02">
             <ul
                 class="navbar-nav  ml-auto mt-2 mt-lg-0 mx-5"
@@ -89,7 +89,7 @@
                 </li>
 
                 <li class="nav-item  @if( url()->current() != route('/') ) cool-link @endif  mx-2 d-md-inline-block d-sm-none">
-                    <a class="nav-link @if( url()->current() == route('/') ) link_active @endif" href="{{ route('/') }}"
+                    <a class="nav-link text-dark @if( url()->current() == route('/') ) link_active @endif" href="{{ route('/') }}"
                     >الرئيسية<span class="sr-only">(current)</span></a
                     >
                 </li>
