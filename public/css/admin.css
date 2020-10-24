@@ -5,10 +5,14 @@
     color: #042b1b;
 }
     #side-bar{
-        height: 400px;
+        height: 100%;
         position: fixed;
         top:0;
         right: 0;
+        bottom: 0;
+        overflow-y: scroll;
+        direction: rtl;
+        scrollbar-color: #006e41 #042b1b  ;
     }
     @media screen and (max-width: 800px){
         #navbar{

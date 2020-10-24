@@ -1,6 +1,29 @@
 body {
  font-family: 'Cairo', sans-serif;
 position: relative;
+
+}
+html,body{
+    scrollbar-color: rgba(255, 152, 79,1) #d95821;
+}
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #d95821;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 152, 79,1);
+    height: 300px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 152, 79,1);
 }
 .search-container{
     position: fixed;
@@ -12,6 +35,11 @@ position: relative;
     z-index: 9999;
     background: rgba(255, 152, 79,0.9);
     display: block;
+}
+.post_image{
+    max-height: 400px;
+    max-width: 500px;
+    margin: 0px auto;
 }
 .search-content{
   margin-top: 300px;
@@ -123,7 +151,9 @@ a {
 
 #def-content{
     position: absolute;
-    margin: 50px 30px;
+    display: inline-block;
+    margin: 50px auto;
+    text-align: center;
     color:white;
 }
 a:hover {
@@ -143,10 +173,13 @@ a:hover {
 }
 .container_text{
     height: 60px;
-    min-width: 300px;
+    width: 100%;
     position: absolute;
     opacity: 0.8;
 
+}
+.date{
+    border-left: 2px solid #292929;
 }
 .ho{
     color: white;
@@ -488,10 +521,19 @@ img.zoom {
     .container_text{
         width: 100%;
     }
+
 }
+
 @media (max-width: 767px) {
     #mixedSlider .MS-content .item {
         width: 100%;
+    }
+    .post_image{
+        max-width: 300px;
+        max-height: 250px;
+    }
+    .date{
+        border-right: 2px solid #292929
     }
 }
 #mixedSlider .MS-content .item .imgTitle {
@@ -577,7 +619,7 @@ img.zoom {
     background: rgba(0,0,0,0.6);
     width: 100%;
     display: none;
-    z-index: 999999;
+    z-index: 9;
     animation-name: card_width;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -627,4 +669,5 @@ display: block;
 .card{
     position: relative;
 }
+
 

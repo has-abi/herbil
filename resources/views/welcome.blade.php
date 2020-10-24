@@ -252,7 +252,7 @@
                                 <a href="{{ url('post/'.$post->id) }}">{{ $post->title }}</a>
                             </h3>
                         </div>
-                        <div class="col-md-1 my-2 order-1 text-center" style="border-left: 2px solid #292929">
+                        <div class="col-md-1 my-2 order-1 text-center date" >
                             {{ App\Helpers\DateHelper::monthToArabic(date('m', strtotime($post->created_at))) }}
                             <div style="font-size: 30px;font-weight: bold;margin-top: -10px;margin-bottom: -10px">
                                 {{ date('d', strtotime($post->created_at)) }}
@@ -297,7 +297,7 @@
                         <div class="MS-content">
                             @foreach($posts as $post)
                                 <div class="item">
-                                    <div class="card post border-0 bg-transparent">
+                                    <div class="card post border-0 bg-transparent" >
                                         <div class="card_after text-center ">
                                             <a href="{{ url('post/'.$post->id) }}" class=" shadow post_btn">لقراءة المزيد</a>
                                         </div>
@@ -326,7 +326,7 @@
             </div>
             <br />
                 <h3 class="text-center">مدينة تامنــصــورت</h3>
-            <iframe width="100%" height="399" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=1023&amp;height=399&amp;hl=en&amp;q=Tamansourt%20Tamansourt+(Tamansourt%20Jama3a)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+            <iframe class="shadow" width="100%" height="399" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=1023&amp;height=399&amp;hl=en&amp;q=Tamansourt%20Tamansourt+(Tamansourt%20Jama3a)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
 
 
 

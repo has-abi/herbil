@@ -46,7 +46,7 @@
                     <img src="{{ url('image/'.$post->id) }}" width="100%" alt="image" style="max-height: 200px" />
                     <br />
                     @foreach($post->categories as $pc)
-                    <span class="badge badge-dark">{{ $pc->libelle }}</span>
+                        <a href="{{ url('categorie?c='.$pc->libelle) }}" class="badge badge-dark">{{ $pc->libelle }}</a>
                     @endforeach
                 </div>
             </div>

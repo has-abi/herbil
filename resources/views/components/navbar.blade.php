@@ -171,7 +171,7 @@
 <!-- <div id="loading"></div> page -->
 
 <br />
-<div class="container-fluid" style="margin-top: 25px">
+<div class="container-fluid " style="margin-top: 25px" >
     <div class="row tam d-flex justify-content-center text-center" >
 
             <span id="definition">
@@ -183,7 +183,7 @@
               style="font-size: 60px"
           ></i>
           <h1>جماعة حربيل</h1>
-          <p>الموقع الرسمي لجماعة حربيل- تامنصورت</p></span
+          <p >الموقع الرسمي لجماعة حربيل- تامنصورت</p></span
         >
     </div>
     <br>

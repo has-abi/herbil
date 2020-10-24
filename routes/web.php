@@ -41,6 +41,8 @@ Route::get('post/{id}',[PostController::class,'show'])->name('post');
 
 //admin routes
 Route::get('login', [AuthController::class,'index'])->name("login");
+Route::get('profile',[AuthController::class,'edit']);
+Route::post('user_update',[AuthController::class,'update']);
 Route::post('login',[AuthController::class,'login'])->name('_login');
 Route::get('register', [AuthController::class,'register'])->name('register');
 Route::post('post-register', [AuthController::class,'postRegister']);

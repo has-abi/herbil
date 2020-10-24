@@ -25,7 +25,7 @@
                 {{ $post->title }}
             </h2>
             <div class="d-flex justify-content-center">
-                <img src="{{ url('image/'.$post->id) }}" alt="{{ $post->title }}" class="img-fluid mx-xl-5 mx-md-2" style="max-height: 400px;max-width: 500px;margin: 0px auto">
+                <img src="{{ url('image/'.$post->id) }}" alt="{{ $post->title }}" class="img-fluid mx-xl-5 mx-md-2 post_image">
             </div>
 
             <div class="my-2 text-right" style="direction: rtl"> {!! $post->content !!}</div>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title text-right" id="image-gallery-title"></h4>

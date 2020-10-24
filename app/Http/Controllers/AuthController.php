@@ -88,4 +88,33 @@ class AuthController extends Controller
         Auth::logout();
         return Redirect('login');
     }
+
+    public function edit(){
+        if(Auth::check()){
+            $userInfo = User::find(Auth::id())->first();
+            return view('auth.profile')->with('userInfo',$userInfo);
+        }
+        else return   view("auth.login")->with("error","ليست لديك صلاحية الدخول!  المرجوا إدخال معلومات حسابك.");;
+    }
+
+    public function update(Request $request){
+        $request->validate([
+            'email'=>'required|email',
+            'pwd'=>'nullable|min:8'
+        ]);
+
+        if($request->get('pwd') == "" || $request->get('pwd') == null){
+            DB::table('users')->update([
+                'email'=>$request->get('email')
+            ]);
+        }
+        else{
+            DB::table('users')->update([
+                'email'=>$request->get('email'),
+                'password'=>Hash::make($request->get('pwd'))
+            ]);
+        }
+        notify()->success('تم تغيير معلوماتك الشخصية بنجاح');
+        return \redirect('admin');
+    }
 }
