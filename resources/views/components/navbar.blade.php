@@ -1,10 +1,8 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light  shadow-sm fixed-top" style="font-size: 16px;background-color: #fffaf7">
-
         <button
             class="navbar-toggler border-0 "
             type="button"
-
         >
             <i class="fa fa-bars" style="font-size: 30px" id="toggler"></i>
         </button>

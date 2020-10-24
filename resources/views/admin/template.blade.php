@@ -10,12 +10,11 @@
     <div class="row no-gutters">
         <div class="col-xl-10 col-md-9 col-sm-12" id="content">
             <nav class="navbar  navbar-light bg-white" id="navbar"  >
-                <a class="navbar-brand " style="position: sticky">
-                    <div class="btn-group" id="icons">
-                        <button class="btn bg-transaprent border-0"><span class="fa fa-user text-indigo"></span></button>
-                        <button class="btn bg-transaprent border-0 search-btn"><span class="fa fa-search text-indigo"></span></button>
+                <div class="navbar-brand float-left" >
+                    <div class="btn-group float-left" id="icons">
+                        <a  href="{{ url('profile') }}" class="btn bg-transaprent border-0"><span class="fa fa-user text-indigo"></span></a>
                     </div>
-                </a>
+                </div>
                 <div class="btn-group px-2">
                     <a href="{{url("video/add")}}" class="btn btn-danger shadow-sm mx-2" style="border-radius: 5px"> أنشر فيديوا  <span class="fa fa-youtube"></span></a>
                     <a href="{{url("posts/create")}}" class="btn btn-success shadow-sm" style="border-radius: 5px"><span class="fa fa-plus"></span> أنشئ مقال </a>
@@ -25,6 +24,7 @@
                 <!--
                     search
                 -->
+                <!--
                 <div class="form-group search-class w-100 mt-2" id="search">
                     <div class="input-group shadow-sm">
                         <div class="input-group-prepend">
@@ -36,6 +36,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </nav>
             @yield("admin")
         </div>

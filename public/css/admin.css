@@ -43,10 +43,19 @@
 .list-group-item a{
     color: white;
 }
+
 .list-group-item:hover{
     background-color: white;
 }
+
 .list-group-item:hover .nav-link{
+    color: #042b1b;
+}
+
+.link_active{
+    background: white;
+}
+.link_active .nav-link {
     color: #042b1b;
 }
 .nav-link{

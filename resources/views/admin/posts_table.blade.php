@@ -40,9 +40,9 @@
                             </td>
                             <td>
                                 @if($post->status)
-                                    <input id="visible_post" data="{{ $post->id }}" class="statu" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-size="small">
+                                    <input  data="{{ $post->id }}" class="statu visible_post" type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-size="small">
                                 @else
-                                    <input id="invisible_post" data="{{ $post->id }}" class="statu" checked type="checkbox"  data-toggle="toggle" data-onstyle="danger" data-offstyle="success" data-size="small">
+                                    <input  data="{{ $post->id }}" class="statu invisible_post" checked type="checkbox"  data-toggle="toggle" data-onstyle="danger" data-offstyle="success" data-size="small">
                                 @endif
                             </td>
                             <td class="text-center">
@@ -199,11 +199,11 @@
                 })
             });
         });
-        $('#visible_post').bootstrapToggle({
+        $('.visible_post').bootstrapToggle({
             on: 'نعمs',
             off: 'لا'
         });
-        $('#invisible_post').bootstrapToggle({
+        $('.invisible_post').bootstrapToggle({
             on: 'لا',
             off: ' نعم'
         });
