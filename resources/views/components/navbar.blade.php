@@ -33,16 +33,16 @@
                 class="navbar-nav  ml-auto mt-2 mt-lg-0 mx-5"
                 style="text-align: center"
             >
-                <li class="nav-item cool-link mx-2 ">
-                    <a class="nav-link @if( url()->current() == route('contact') ) active @endif" href="{{ route("contact") }}">اتـصـل بـنـا</a>
+                <li class="nav-item @if( url()->current() != route('contact') ) cool-link @endif mx-2 ">
+                    <a class="nav-link @if( url()->current() == route('contact') ) link_active @endif text-dark" href="{{ route("contact") }}">اتـصـل بـنـا</a>
                 </li>
-                <li class="nav-item cool-link mx-2">
-                    <a class="nav-link " href="{{ route('ville') }}">زيارة تامنصورت</a>
+                <li class="nav-item @if( url()->current() != route('ville') ) cool-link @endif mx-2">
+                    <a class="nav-link @if( url()->current() == route('ville') ) link_active @endif text-dark" href="{{ route('ville') }}">زيارة تامنصورت</a>
                 </li>
 
                 <li class="nav-item dropdown cool-link mx-2">
                     <a
-                        class="nav-link dropdown-toggle "
+                        class="nav-link dropdown-toggle text-dark"
                         href="#"
                         id="navbarDropdownMenuLink"
                         data-toggle="dropdown"
@@ -65,7 +65,7 @@
                 </li>
                 <li class="nav-item dropdown cool-link mx-2">
                     <a
-                        class="nav-link dropdown-toggle "
+                        class="nav-link dropdown-toggle text-dark "
                         href="#"
                         id="navbarDropdownMenuLink"
                         data-toggle="dropdown"
@@ -88,8 +88,8 @@
                     </div>
                 </li>
 
-                <li class="nav-item active cool-link mx-2 d-md-inline-block d-sm-none">
-                    <a class="nav-link" href="{{ route('/') }}"
+                <li class="nav-item  @if( url()->current() != route('/') ) cool-link @endif  mx-2 d-md-inline-block d-sm-none">
+                    <a class="nav-link @if( url()->current() == route('/') ) link_active @endif" href="{{ route('/') }}"
                     >الرئيسية<span class="sr-only">(current)</span></a
                     >
                 </li>
@@ -190,14 +190,14 @@
     <div class="row" style="text-align: center">
         <div class="col-md-3"></div>
         <div class="col-md-2">
-            <a  href="{{ route('/') }}"> <h5 class="dash shadow-sm">مذكرة</h5></a> <br><br>
+            <a  href="{{ route('/') }}"> <h5 class="@if(url()->current() == url('modakira')) next_active @else dash  @endif  shadow-sm">مذكرة</h5></a> <br><br>
         </div>
 
         <div class="col-md-2">
-            <a  href="{{ route('news') }}"><h5 class="dash shadow-sm">صحافة</h5> </a><br><br>
+            <a  href="{{ route('news') }}"><h5 class="@if(url()->current() == url('journal')) next_active @else dash  @endif  shadow-sm">صحافة</h5> </a><br><br>
         </div>
         <div class="col-md-2">
-            <a  href="{{ route('news') }}"><h5 class="dash shadow-sm">أخبار</h5></a> <br><br>
+            <a  href="{{ route('news') }}"><h5 class="@if(url()->current() == route('news')) next_active @else dash  @endif shadow-sm">أخبار</h5></a> <br><br>
         </div>
 
         <div class="col-md-3"></div>
