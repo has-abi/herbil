@@ -183,8 +183,9 @@
                             <h6 class="text-right">
                                 {{ $v->title }}
                             </h6>
-                            <br />
-                            <iframe width="350" height="200" src="{{ url($v->url) }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <div class="d-flex justify-content-center">
+                                <iframe class="video" height="200" src="{{ url($v->url) }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
                             <br />
                             <hr />
                             <br />
@@ -320,15 +321,12 @@
                             <button class="MS-left"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
                             <button class="MS-right"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
                         </div>
-
                     </div>
                 </div>
             </div>
             <br />
                 <h3 class="text-center">مدينة تامنــصــورت</h3>
             <iframe class="shadow" width="100%" height="399" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=1023&amp;height=399&amp;hl=en&amp;q=Tamansourt%20Tamansourt+(Tamansourt%20Jama3a)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-
-
 
         </div>
   </div>

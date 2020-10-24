@@ -9,7 +9,7 @@
 @section("template")
     <x-navbar></x-navbar>
     <br />
-    <div class="row">
+    <div class="row no-gutters">
         <div class="col-md-2"></div>
         <div
             class="col-md-8"

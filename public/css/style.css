@@ -3,12 +3,16 @@ body {
 position: relative;
 
 }
+.video{
+    width: 350px;
+}
 html,body{
     scrollbar-color: rgba(255, 152, 79,1) #d95821;
 }
 ::-webkit-scrollbar {
     width: 10px;
 }
+
 
 /* Track */
 ::-webkit-scrollbar-track {
@@ -241,6 +245,7 @@ a:hover {
     width: 100%;
     transition: width 0.3s;
 }
+
 .cool-link::after {
     content: "";
     display: block;
@@ -254,6 +259,9 @@ a:hover {
 .cool-link:hover::after {
   width: 100%;
   transition: width 0.3s;
+}
+.active{
+    color: #f83600;
 }
 /* Loading CSS */
  .page {
@@ -534,6 +542,9 @@ img.zoom {
     }
     .date{
         border-right: 2px solid #292929
+    }
+    .video{
+        width: 320px;
     }
 }
 #mixedSlider .MS-content .item .imgTitle {

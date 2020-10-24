@@ -27,17 +27,17 @@
                 ></a>
                 -->
           </span>
-        <a href="{{ route('/') }}" class="navbar-brand d-md-inline-block d-lg-none  text-right ">الرئيسية</a>
+        <a href="{{ route('/') }}" class="navbar-brand d-md-inline-block d-lg-none   text-right @if( url()->current() == route('/') ) active @endif">الرئيسية </a>
         <div class="collapse navbar-collapse text-center" id="navbarTogglerDemo02">
             <ul
                 class="navbar-nav  ml-auto mt-2 mt-lg-0 mx-5"
                 style="text-align: center"
             >
-                <li class="nav-item cool-link mx-2">
-                    <a class="nav-link" href="{{ route("contact") }}">اتـصـل بـنـا</a>
+                <li class="nav-item cool-link mx-2 ">
+                    <a class="nav-link @if( url()->current() == route('contact') ) active @endif" href="{{ route("contact") }}">اتـصـل بـنـا</a>
                 </li>
                 <li class="nav-item cool-link mx-2">
-                    <a class="nav-link" href="{{ route('ville') }}">زيارة تامنصورت</a>
+                    <a class="nav-link " href="{{ route('ville') }}">زيارة تامنصورت</a>
                 </li>
 
                 <li class="nav-item dropdown cool-link mx-2">
@@ -65,7 +65,7 @@
                 </li>
                 <li class="nav-item dropdown cool-link mx-2">
                     <a
-                        class="nav-link dropdown-toggle"
+                        class="nav-link dropdown-toggle "
                         href="#"
                         id="navbarDropdownMenuLink"
                         data-toggle="dropdown"

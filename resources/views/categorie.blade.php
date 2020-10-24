@@ -6,8 +6,8 @@
     {{ session()->get('search_cat') }}
 @endsection
 @section('template')
-    <h3 class="text-center">{{ session()->get('search_cat') }}</h3>
     <x-navbar></x-navbar>
+
     <div class="container mt-3" >
         <h1 class="text-center mb-2" style="color: orangered;direction: rtl">{{ session()->get('search_cat') }}</h1>
         <div class="row d-flex justify-content-center">

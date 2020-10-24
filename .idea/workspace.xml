@@ -24,7 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="7299dcf8-822d-4948-8111-80f7aa8e4f8c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/search.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/search.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/categorie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categorie.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contact.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contact.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +218,7 @@
       <workItem from="1603042253656" duration="18950000" />
       <workItem from="1603109277711" duration="3659000" />
       <workItem from="1603122549107" duration="67000" />
-      <workItem from="1603543224957" duration="11717000" />
+      <workItem from="1603543224957" duration="14561000" />
     </task>
     <servers />
   </component>
