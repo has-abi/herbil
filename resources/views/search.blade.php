@@ -13,17 +13,17 @@
             <p class="text-right" style="direction: rtl;font-size: 20px">{{ $posts->total() }} نتيجة </p>
             <div class="row d-flex justify-content-center">
                 @foreach($posts as $post)
-                    <div class="col-md-4 col-12 col-xl-4">
+                    <div class="col-md-4 col-lg-4 col-12 my-2 my-md-0 my-lg-0 my-xl-0 col-xl-4">
                         <a href="{{ url('post/'.$post->id) }}">
-                        <div class="card shadow">
-                            <div class="card-header text-right" style="direction: rtl">
-                                {{ $post->title }}
-                            </div>
-                            <div class="card-body p-0">
-                                <img src="{{ url('image/'.$post->id) }}" alt="image" class="search-card-img card-img img-fluid">
-                            </div>
+                            <div class="card shadow" style="max-height: 300px;min-height: 300px">
 
-                        </div>
+                                <div class="card-body p-0">
+                                    <img src="{{ url('image/'.$post->id)}}" alt="image" class="search-card-img h-100 card-img img-fluid image" >
+                                </div>
+                                <div class="card-header text-right" style="direction: rtl">
+                                    {!! \Illuminate\Support\Str::limit($post->title ,100) !!}@if(strlen($post->title)>100)... @endif
+                                </div>
+                            </div>
                         </a>
                     </div>
                 @endforeach
