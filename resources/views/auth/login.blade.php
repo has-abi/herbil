@@ -6,7 +6,9 @@
     @isset($error)
         <div class="alert alert-danger shadow-sm my-2 mx-5 text-center">{{ $error }}</div>
     @endisset
+
     <div class="d-flex justify-content-center" style="margin-top: 150px">
+
         <form action="{{ url('login') }}" method="POST" class="card shadow-sm p-4 border-0">
            @csrf
             <div class="form-group">
@@ -24,6 +26,10 @@
                 @enderror
             </div>
             <button class="btn bg-indigo text-white btn-block shadow" type="submit">تسجيل الدخول</button>
+
+            @if(session("error"))
+                <div class="alert alert-danger shadow-sm mt-3  text-center">{{session("error")}}</div>
+            @endif
         </form>
     </div>
 

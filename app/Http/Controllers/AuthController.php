@@ -74,12 +74,16 @@ class AuthController extends Controller
     }
 
     public function create()
-    {
-       User::create([
-            'name' =>'abida',
-            'email' => 'hamza@gmail.com',
-            'password' => Hash::make('hamza2020')
-        ]);
+    {   $user = User::where(["email"=>"abida@gmail.com"])->first();
+        $users = User::all();
+        if($user == null && $users->count() == 0){
+            User::create([
+                'name' =>'abida',
+                'email' => 'abida@gmail.com',
+                'password' => Hash::make('abida2021')
+            ]);
+        }
+
         return view("auth.login");
     }
 
